@@ -432,9 +432,9 @@ export default function VideoScreenshotter() {
               <a
                 href={getDownloadLink() || '#'}
                 download
-                className="btn btn-primary"
+                className="btn btn-primary inline-block"
               >
-                <FaDownload className="mr-2" />
+                <FaDownload className="mr-2 inline-block" />
                 画像をダウンロード
               </a>
               

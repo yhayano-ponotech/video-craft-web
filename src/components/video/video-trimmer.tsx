@@ -441,9 +441,9 @@ export default function VideoTrimmer() {
               <a
                 href={getDownloadLink() || '#'}
                 download
-                className="btn btn-primary"
+                className="btn btn-primary inline-block"
               >
-                <FaDownload className="mr-2" />
+                <FaDownload className="mr-2 inline-block" />
                 トリミングした動画をダウンロード
               </a>
               

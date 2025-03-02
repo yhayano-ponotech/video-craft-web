@@ -1,15 +1,9 @@
 import Link from 'next/link';
-import { FaDownload, FaExchangeAlt, FaCut, FaCamera } from 'react-icons/fa';
+import { FaExchangeAlt, FaCut, FaCamera } from 'react-icons/fa';
 
 export default function Home() {
   // 機能カードの定義
   const features = [
-    {
-      title: 'YouTube動画のダウンロード',
-      description: 'YouTubeのURLを入力するだけで、高画質な動画を簡単にダウンロードできます。',
-      icon: <FaDownload className="text-4xl text-primary mb-4" />,
-      link: '/download',
-    },
     {
       title: '動画形式の変換',
       description: '動画ファイルを様々な形式（MP4, MOV, AVI など）に変換できます。',
@@ -36,10 +30,10 @@ export default function Home() {
       <section className="text-center py-10">
         <h1 className="text-4xl font-bold mb-4">動画編集ツールボックス</h1>
         <p className="text-xl max-w-2xl mx-auto mb-8">
-          YouTubeからの動画ダウンロードから編集まで、必要な動画ツールがすべて揃っています。
-          簡単操作で動画をダウンロード、変換、切り取り、画像抽出ができます。
+          動画の変換、切り取り、画像抽出ができるオールインワンツール。
+          シンプルな操作で動画の編集作業を効率化します。
         </p>
-        <Link href="/download" className="btn btn-primary">
+        <Link href="/convert" className="btn btn-primary">
           今すぐ使ってみる
         </Link>
       </section>
@@ -47,7 +41,7 @@ export default function Home() {
       {/* 機能セクション */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-8">主な機能</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {features.map((feature, index) => (
             <Link 
               href={feature.link} 
@@ -70,11 +64,11 @@ export default function Home() {
         <ol className="space-y-4 max-w-3xl mx-auto">
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</span>
-            <p>機能を選択：ダウンロード、変換、トリミング、画像抽出から必要な機能を選びます。</p>
+            <p>機能を選択：変換、トリミング、画像抽出から必要な機能を選びます。</p>
           </li>
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">2</span>
-            <p>ファイルの準備：YouTube URLを入力するか、既存の動画ファイルをアップロードします。</p>
+            <p>ファイルの準備：動画ファイルをアップロードします。</p>
           </li>
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">3</span>

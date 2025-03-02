@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Video Toolbox</h3>
             <p className="mb-4">
-              YouTubeからの動画ダウンロード、変換、切り取り、画像抽出を簡単に行えるオールインワンツール。
+              動画の変換、切り取り、画像抽出を簡単に行えるオールインワンツール。
             </p>
           </div>
 
@@ -22,11 +22,6 @@ export default function Footer() {
               <li>
                 <Link href="/" className="hover:text-primary transition-colors">
                   ホーム
-                </Link>
-              </li>
-              <li>
-                <Link href="/download" className="hover:text-primary transition-colors">
-                  ダウンロード
                 </Link>
               </li>
               <li>
@@ -60,11 +55,6 @@ export default function Footer() {
                 <Link href="/privacy" className="hover:text-primary transition-colors">
                   プライバシーポリシー
                 </Link>
-              </li>
-              <li>
-                <p>
-                  注意: YouTubeの動画をダウンロードする際は、著作権法を遵守してください。個人的な利用以外の目的での使用は禁止されています。
-                </p>
               </li>
             </ul>
           </div>

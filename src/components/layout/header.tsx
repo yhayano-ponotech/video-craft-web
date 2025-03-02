@@ -2,13 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FaYoutube, FaBars, FaTimes } from 'react-icons/fa';
+import { FaVideo, FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: 'ダウンロード', href: '/download' },
     { name: '変換', href: '/convert' },
     { name: '切り取り', href: '/trim' },
     { name: '画像抽出', href: '/screenshot' },
@@ -20,7 +19,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* ロゴ */}
           <Link href="/" className="flex items-center">
-            <FaYoutube className="text-accent text-3xl mr-2" />
+            <FaVideo className="text-accent text-3xl mr-2" />
             <span className="font-bold text-xl">Video Toolbox</span>
           </Link>
 

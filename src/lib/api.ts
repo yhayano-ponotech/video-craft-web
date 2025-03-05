@@ -7,6 +7,7 @@ import {
   ConversionTask,
   TrimTask,
   ScreenshotTask,
+  CompressTask,
   ApiResponse
 } from './types';
 
@@ -188,6 +189,44 @@ export async function getScreenshotStatus(taskId: string): Promise<ApiResponse<S
   }
 }
 
+// 動画圧縮の開始
+export async function startCompression(
+  formData: FormData
+): Promise<ApiResponse<CompressTask>> {
+  try {
+    const response = await apiClient.post<ApiResponse<CompressTask>>('/video/compress', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      return error.response.data as ApiResponse<CompressTask>;
+    }
+    return {
+      success: false,
+      error: '圧縮の開始に失敗しました。ファイルのサイズを確認してください。',
+    };
+  }
+}
+
+// 圧縮状態の取得
+export async function getCompressionStatus(taskId: string): Promise<ApiResponse<CompressTask>> {
+  try {
+    const response = await apiClient.get<ApiResponse<CompressTask>>(`/video/compress/${taskId}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      return error.response.data as ApiResponse<CompressTask>;
+    }
+    return {
+      success: false,
+      error: '圧縮状態の取得に失敗しました。',
+    };
+  }
+}
+
 // ファイルのダウンロードURLを生成
 export function getFileDownloadUrl(filePath: string): string {
   return `${API_BASE_URL}/download?path=${encodeURIComponent(filePath)}`;
@@ -203,5 +242,7 @@ export default {
   getTrimmingStatus,
   takeScreenshot,
   getScreenshotStatus,
+  startCompression,
+  getCompressionStatus,
   getFileDownloadUrl,
 };

@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Video Toolbox</h3>
             <p className="mb-4">
-              動画の変換、切り取り、画像抽出を簡単に行えるオールインワンツール。
+              動画の変換、圧縮、切り取り、画像抽出を簡単に行えるオールインワンツール。
             </p>
           </div>
 
@@ -27,6 +27,11 @@ export default function Footer() {
               <li>
                 <Link href="/convert" className="hover:text-primary transition-colors">
                   変換
+                </Link>
+              </li>
+              <li>
+                <Link href="/compress" className="hover:text-primary transition-colors">
+                  圧縮
                 </Link>
               </li>
               <li>

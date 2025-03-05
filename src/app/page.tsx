@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaExchangeAlt, FaCut, FaCamera } from 'react-icons/fa';
+import { FaExchangeAlt, FaCompress, FaCut, FaCamera } from 'react-icons/fa';
 
 export default function Home() {
   // 機能カードの定義
@@ -9,6 +9,12 @@ export default function Home() {
       description: '動画ファイルを様々な形式（MP4, MOV, AVI など）に変換できます。',
       icon: <FaExchangeAlt className="text-4xl text-primary mb-4" />,
       link: '/convert',
+    },
+    {
+      title: 'スマート動画圧縮',
+      description: '動画を品質を維持しながら効率的に圧縮し、ファイルサイズを小さくします。',
+      icon: <FaCompress className="text-4xl text-primary mb-4" />,
+      link: '/compress',
     },
     {
       title: '動画のトリミング',
@@ -30,10 +36,10 @@ export default function Home() {
       <section className="text-center py-10">
         <h1 className="text-4xl font-bold mb-4">動画編集ツールボックス</h1>
         <p className="text-xl max-w-2xl mx-auto mb-8">
-          動画の変換、切り取り、画像抽出ができるオールインワンツール。
+          動画の変換、圧縮、切り取り、画像抽出ができるオールインワンツール。
           シンプルな操作で動画の編集作業を効率化します。
         </p>
-        <Link href="/convert" className="btn btn-primary">
+        <Link href="/compress" className="btn btn-primary">
           今すぐ使ってみる
         </Link>
       </section>
@@ -41,7 +47,7 @@ export default function Home() {
       {/* 機能セクション */}
       <section>
         <h2 className="text-3xl font-bold text-center mb-8">主な機能</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <Link 
               href={feature.link} 
@@ -64,7 +70,7 @@ export default function Home() {
         <ol className="space-y-4 max-w-3xl mx-auto">
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</span>
-            <p>機能を選択：変換、トリミング、画像抽出から必要な機能を選びます。</p>
+            <p>機能を選択：変換、圧縮、トリミング、画像抽出から必要な機能を選びます。</p>
           </li>
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">2</span>
@@ -72,7 +78,7 @@ export default function Home() {
           </li>
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">3</span>
-            <p>設定を調整：必要に応じて出力形式や切り取り範囲などを設定します。</p>
+            <p>設定を調整：必要に応じて出力形式や圧縮レベルなどを設定します。</p>
           </li>
           <li className="flex items-start">
             <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">4</span>

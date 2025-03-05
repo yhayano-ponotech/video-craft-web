@@ -9,6 +9,7 @@ export default function Header() {
 
   const navItems = [
     { name: '変換', href: '/convert' },
+    { name: '圧縮', href: '/compress' },
     { name: '切り取り', href: '/trim' },
     { name: '画像抽出', href: '/screenshot' },
   ];

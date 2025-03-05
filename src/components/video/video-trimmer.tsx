@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/src/components/ui/button';
-import { FaUpload, FaCut, FaDownload, FaPlay, FaPause } from 'react-icons/fa';
+import { FaUpload, FaCut, FaDownload, FaPlay, FaPause, FaInfoCircle } from 'react-icons/fa';
 import { TrimTask } from '@/src/lib/types';
 import { startTrimming, getTrimmingStatus, getFileDownloadUrl } from '@/src/lib/api';
 import { formatBytes, formatDuration } from '@/src/lib/utils';
@@ -491,11 +491,20 @@ export default function VideoTrimmer() {
                 トリミングした動画をダウンロード
               </a>
               
+              {/* ファイル保持期間に関する注意書き */}
+              <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm flex items-start">
+                <FaInfoCircle className="text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                <p className="text-blue-700">
+                  <strong>お知らせ:</strong> トリミングされた動画は24時間後に自動的に削除されます。
+                  必要なファイルは、お使いのデバイスに保存してください。
+                </p>
+              </div>
+              
               {/* リセットボタン */}
               <Button
                 onClick={handleReset}
                 variant="outline"
-                className="ml-4"
+                className="mt-4"
               >
                 別の動画をトリミング
               </Button>

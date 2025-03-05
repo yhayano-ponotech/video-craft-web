@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/src/components/ui/button';
-import { FaUpload, FaCamera, FaDownload, FaPlay, FaPause } from 'react-icons/fa';
+import { FaUpload, FaCamera, FaDownload, FaPlay, FaPause, FaInfoCircle } from 'react-icons/fa';
 import { ScreenshotTask } from '@/src/lib/types';
 import { takeScreenshot, getScreenshotStatus, getFileDownloadUrl } from '@/src/lib/api';
 import { formatBytes, formatDuration } from '@/src/lib/utils';
@@ -482,11 +482,20 @@ export default function VideoScreenshotter() {
                 画像をダウンロード
               </a>
               
+              {/* ファイル保持期間に関する注意書き */}
+              <div className="mt-4 p-3 bg-blue-50 rounded-lg text-sm flex items-start">
+                <FaInfoCircle className="text-blue-500 mr-2 mt-0.5 flex-shrink-0" />
+                <p className="text-blue-700">
+                  <strong>お知らせ:</strong> 抽出された画像は24時間後に自動的に削除されます。
+                  必要な画像は、お使いのデバイスに保存してください。
+                </p>
+              </div>
+              
               {/* リセットボタン */}
               <Button
                 onClick={handleReset}
                 variant="outline"
-                className="ml-4"
+                className="mt-4"
               >
                 別の画像を抽出
               </Button>

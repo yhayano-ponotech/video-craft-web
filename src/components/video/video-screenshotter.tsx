@@ -40,6 +40,10 @@ export default function VideoScreenshotter() {
   const [screenshotTask, setScreenshotTask] = useState<ScreenshotTask | null>(null);
   const [progress, setProgress] = useState(0);
   
+  // シークバードラッグの状態管理
+  const [isDragging, setIsDragging] = useState(false);
+  const seekBarRef = useRef<HTMLDivElement>(null);
+  
   // ポーリングのインターバルID
   const pollingRef = useRef<NodeJS.Timeout | null>(null);
   
@@ -80,6 +84,47 @@ export default function VideoScreenshotter() {
     }
   });
 
+  // シークバーのドラッグ機能
+  const handleSeekMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragging(true);
+    updateSeekPosition(e);
+  };
+  
+  const handleSeekMouseMove = (e: MouseEvent) => {
+    if (isDragging) {
+      updateSeekPosition(e);
+    }
+  };
+  
+  const handleSeekMouseUp = () => {
+    if (isDragging) {
+      setIsDragging(false);
+    }
+  };
+  
+  const updateSeekPosition = (e: MouseEvent | React.MouseEvent) => {
+    if (seekBarRef.current && duration > 0) {
+      const rect = seekBarRef.current.getBoundingClientRect();
+      const percentage = Math.min(Math.max(0, (e.clientX - rect.left) / rect.width), 1);
+      const newTime = percentage * duration;
+      setCurrentTime(newTime);
+      seekTo(newTime);
+    }
+  };
+  
+  // マウスイベントリスナーの設定と解除
+  useEffect(() => {
+    if (file && fileUrl) {
+      document.addEventListener('mousemove', handleSeekMouseMove);
+      document.addEventListener('mouseup', handleSeekMouseUp);
+      return () => {
+        document.removeEventListener('mousemove', handleSeekMouseMove);
+        document.removeEventListener('mouseup', handleSeekMouseUp);
+      };
+    }
+  }, [file, fileUrl, isDragging]);
+
   // コンポーネントがアンマウントされたらObjectURLを解放
   useEffect(() => {
     return () => {
@@ -94,7 +139,9 @@ export default function VideoScreenshotter() {
 
   // 再生位置が変更されたときの処理
   const handleProgress = (state: { playedSeconds: number }) => {
-    setCurrentTime(state.playedSeconds);
+    if (!isDragging) {
+      setCurrentTime(state.playedSeconds);
+    }
   };
 
   // 動画の長さが取得できたときの処理
@@ -287,13 +334,10 @@ export default function VideoScreenshotter() {
               </div>
               
               {/* シークバー */}
-              <div className="flex-grow h-2 bg-gray-600 rounded-full cursor-pointer"
-                onClick={(e) => {
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  const percentage = (e.clientX - rect.left) / rect.width;
-                  const newTime = percentage * duration;
-                  seekTo(newTime);
-                }}
+              <div 
+                ref={seekBarRef}
+                className="flex-grow h-2 bg-gray-600 rounded-full cursor-pointer"
+                onMouseDown={handleSeekMouseDown}
               >
                 <div
                   className="h-full bg-primary rounded-full"

@@ -20,6 +20,7 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: false, // CORS設定による
 });
 
 // YouTube動画情報の取得
